@@ -1,5 +1,9 @@
 package com.tinfoilsecurity
 
+def logContainerOutput(String container_id) {
+  sh "docker logs --follow ${container_id}"
+}
+
 def hasDockerImage(String image_name) {
   def status_code = sh(script: "docker inspect --format {} --type image ${image_name}", returnStatus: true)
   status_code == 0
