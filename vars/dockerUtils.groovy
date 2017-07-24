@@ -3,7 +3,7 @@ def logContainerOutput(Container c) {
 }
 
 def logContainerOutput(String container_id) {
-  sh "docker logs --follow ${container_id}"
+  sh("docker logs --follow ${container_id}")
 }
 
 def hasDockerImage(String image_name) {
@@ -12,14 +12,11 @@ def hasDockerImage(String image_name) {
 }
 
 def assertContainerExitCode(Container c) {
-  assertExitCode(c.id)
+  assertContainerExitCode(c.id)
 }
 
 def assertContainerExitCode(String container_id) {
-  def exitCode =
-    sh(returnStdout: true, script: "docker inspect -f '{{.State.ExitCode}}' ${container_id}")
-    .trim()
-    .toInteger()
+  def exitCode = sh(returnStdout: true, script: "docker inspect -f '{{.State.ExitCode}}' ${container_id}").trim().toInteger()
   if (exitCode != 0) {
     error "Docker container ${container_id} had exit code ${exitCode}"
   }
