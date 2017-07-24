@@ -1,3 +1,5 @@
+import static org.jenkinsci.plugins.docker.workflow.Docker.Container
+
 def logContainerOutput(Container c) {
   logContainerOutput(c.id)
 }
