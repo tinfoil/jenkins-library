@@ -6,5 +6,5 @@ def deploy(String host, String usernamepassword, String service, String environm
       version: version
     ]
   ])
-  sh "curl --request POST --user '${usernamepassword}' --header 'Content-Type: application/json' --data-urlencode '$payload' https://${host}/api/services/${service}/environments/${environment}/deployments"
+  sh "curl --request POST --user '${usernamepassword}' --header 'Content-Type: application/json' --data '$payload' https://${host}/api/services/${service}/environments/${environment}/deployments"
 }
