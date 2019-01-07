@@ -1,7 +1,7 @@
 import static org.jenkinsci.plugins.docker.workflow.Docker.Container
 
 def uniqueImageLabelForBuild() {
-  env.BUILD_TAG.replace('%2F', '-').toLowerCase() // Fix slashes being broken
+  env.BUILD_TAG.replace('%2F', '-').replace('@', '-').toLowerCase() // Fix slashes and @ being broken
 }
 
 def logContainerOutput(Container c) {
